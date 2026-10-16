@@ -1,9 +1,9 @@
 # Pose samples
 
-用户提供的两个 ZIP 已解压：
+Two user-provided ZIP archives have been extracted:
 
-- class-1：139 张，来自 Pose-Class 1-samples.zip。
-- class-2：152 张，来自 Pose-Class 2-samples.zip。
+- class-1: 139 images from Pose-Class 1-samples.zip.
+- class-2: 152 images from Pose-Class 2-samples.zip.
 
-保留原始文件名和内容；类别编号与 ZIP 一致。具体类别含义待用户补充。
-新增样本请按类别放入相应目录；样本变更不会自动更新远程模型。
+Original filenames and contents are preserved; class numbers match the ZIP archives. The user has not yet provided the meaning of each class.
+Place new samples in the corresponding class directory. Changes to samples do not automatically update the remote model.

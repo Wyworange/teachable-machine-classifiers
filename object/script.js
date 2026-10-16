@@ -17,12 +17,12 @@
     if (camera) camera.stop();
     start.disabled = busy;
     stop.disabled = true;
-    status.textContent = "已停止";
+    status.textContent = "Stopped";
   }
   function fail(error) {
     stopCamera();
     console.error(error);
-    status.textContent = "无法运行：" + error.message + "。请检查网络、摄像头权限，并通过 localhost 或 HTTPS 打开页面。";
+    status.textContent = "Unable to run: " + error.message + ". Check your network connection and webcam permissions, and open the page via localhost or HTTPS.";
   }
   async function loop(token) {
     if (!active || token !== generation) return;
@@ -45,11 +45,11 @@
     busy = true;
     start.disabled = true;
     const token = ++generation;
-    status.textContent = "正在加载模型与摄像头…";
+    status.textContent = "Loading model and webcam…";
     try {
       library = window.tmImage;
-      if (!library || !window.tf) throw new Error("模型依赖未加载");
-      if (!navigator.mediaDevices?.getUserMedia) throw new Error("浏览器无法访问摄像头");
+      if (!library || !window.tf) throw new Error("Model dependencies did not load");
+      if (!navigator.mediaDevices?.getUserMedia) throw new Error("The browser cannot access the webcam");
       model = model || await library.load(MODEL_URL + "model.json", MODEL_URL + "metadata.json");
       if (token !== generation) return;
       camera = new library.Webcam(200, 200, true);
@@ -60,7 +60,7 @@
       labels.replaceChildren(...Array.from({ length: model.getTotalClasses() }, () => document.createElement("p")));
       active = true;
       stop.disabled = false;
-      status.textContent = "正在识别";
+      status.textContent = "Classifying";
       frame = requestAnimationFrame(() => loop(token));
     } catch (error) {
       if (token === generation) fail(error);
